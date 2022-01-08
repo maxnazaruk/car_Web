@@ -1,0 +1,1 @@
+docker run --name carm -p 5432:5432 -e POSTGRES_USER=user -e POSTGRES_PASSWORD=pswd -e POSTGRES_DB=cars -d postgres:13.3

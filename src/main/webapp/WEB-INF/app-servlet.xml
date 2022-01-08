@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.carm"/>
+
+    <mvc:annotation-driven/>
+
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="classpath:templates"/>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <bean id="orderService" class="com.carm.service.OrderService">
+        <constructor-arg ref="orderDao"/>
+    </bean>
+
+    <bean id="orderDao" class="com.carm.jdbc.JdbcOrderDao"/>
+
+    <bean id="spareService" class="com.carm.service.SpareService">
+        <constructor-arg ref="spareDao"/>
+    </bean>
+
+    <bean id="spareDao" class="com.carm.jdbc.JdbcSparePartDao"/>
+
+    <bean id="vehicleService" class="com.carm.service.VehicleService">
+        <constructor-arg ref="vehicleDao"/>
+    </bean>
+
+    <bean id="vehicleDao" class="com.carm.jdbc.JdbcVehicleDao"/>
+
+    <bean id="workerService" class="com.carm.service.WorkerService">
+        <constructor-arg ref="workerDao"/>
+    </bean>
+
+    <bean id="workerDao" class="com.carm.jdbc.JdbcWorkerDao"/>
+</beans>
